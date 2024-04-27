@@ -5,6 +5,7 @@ import {
     listContacts,
     removeContact,
 } from "./contacts.js";
+
 program
     .option("-a, --action <type>", "choose action")
     .option("-i, --id <type>", "user id")
@@ -16,7 +17,6 @@ program.parse();
 
 const options = program.opts();
 
-// TODO: рефакторити
 async function invokeAction({ action, id, ...data }) {
     switch (action) {
         case "list":
@@ -40,12 +40,4 @@ async function invokeAction({ action, id, ...data }) {
     }
 }
 
-invokeAction(options).then(console.log);
-// invokeAction({ action: "remove", id: "Z5sbDlS7pCzNsnAHLtDJd" }).then(
-//     console.log
-// );
-
-// invokeAction({
-//     action: "remove",
-//     id: "w7s5zudvo6WC1M83Y9Rui",
-// }).then(console.log);
+invokeAction(options).then(console.log).catch(console.log);
